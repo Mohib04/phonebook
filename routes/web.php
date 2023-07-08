@@ -30,6 +30,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //Contact Controller
-Route::resource('contacts', ContactController::class);
+Route::resource('contacts', ContactController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -12,7 +12,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::paginate(5);
         return view('contact.index', compact('contacts'));
     }
 
@@ -31,7 +31,7 @@ class ContactController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|unique:contacts',
+            'phone' => 'required|min:10|unique:contacts',
         ]);
         $contacts = Contact::create([
             'name' => $request->name,
