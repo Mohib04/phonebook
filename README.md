@@ -27,10 +27,10 @@ installation_steps:
     instructions:
       - Create a new MySQL database.
       - Update the DB_DATABASE, DB_USERNAME, and DB_PASSWORD fields in the .env file with your database credentials.
-  - step: Run database migrations
-    command: php artisan migrate
   - step: Run npm install & npm run dev
     command: npm install & npm run dev
+  - step: Run database migrations
+    command: php artisan migrate
   - step: Take new Terminal and Start the development server
     command: php artisan serve
   - step: Access the application in a web browser
