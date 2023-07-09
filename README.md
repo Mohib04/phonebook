@@ -31,7 +31,7 @@ installation_steps:
     command: php artisan migrate
   - step: Run npm install & npm run dev
     command: npm install & npm run dev
-  - step: Start the development server
+  - step: Take new Terminal and Start the development server
     command: php artisan serve
   - step: Access the application in a web browser
     instructions: Visit http://localhost:8000
