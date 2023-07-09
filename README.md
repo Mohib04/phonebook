@@ -16,7 +16,7 @@ technologies_used:
 
 installation_steps:
   - step: Clone the repository
-    command: git clone https://github.com/your-username/phonebook-project.git
+    command: git clone https://github.com/Mohib04/phonebook.git
   - step: Install project dependencies
     command: composer install
   - step: Copy the .env.example file to .env
