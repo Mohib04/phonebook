@@ -16,7 +16,9 @@ return new class extends Migration {
             $table->string('phone')->unique();
             $table->string('email')->nullable();
             $table->string('group')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

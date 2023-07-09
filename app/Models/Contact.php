@@ -12,6 +12,12 @@ class Contact extends Model
         'name',
         'phone',
         'email',
-        'group'
+        'group',
+        'user_id'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

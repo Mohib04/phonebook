@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -12,7 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(5);
+        $user = Auth::user();
+        $contacts = $user->contacts()->paginate(10);
         return view('contact.index', compact('contacts'));
     }
 
@@ -27,20 +30,18 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required|min:10|unique:contacts',
-        ]);
+        $user = Auth::user();
         $contacts = Contact::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'group' => $request->group,
+            'name'      => $request->name,
+            'phone'     => $request->phone,
+            'email'     => $request->email,
+            'group'     => $request->group,
+            'user_id'   => $user->id
         ]);
         $contacts->save();
-        return redirect('contacts');
+        return redirect('dashboard');
     }
 
     /**
